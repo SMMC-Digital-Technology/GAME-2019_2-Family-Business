@@ -1,13 +1,15 @@
-var game = new Phaser.Game(800, 500, Phaser.CANVAS, 'Family Business', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(400, 200, Phaser.CANVAS, 'Family Business', { preload: preload, create: create, update: update });
 
 var player
 var D
 var A
 var spacebar
+var jump
 
 function preload() {
 
   game.load.image('bg', 'assets/Background.png');
+  game.load.image('ground', 'assets/Ground.png');
   game.load.spritesheet('player', 'assets/jossepi.png', 22, 36);
   game.load.spritesheet('alien', 'assets/Alien.png', 750, 450);
 }
@@ -17,8 +19,9 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   cursors = game.input.keyboard.createCursorKeys();
 
-  player = game.add.sprite(48, game.world.height - 150, 'Jossepi');
+  player = game.add.sprite(48, game.world.height - 150, 'player');
   game.physics.arcade.enable(player);
+  player.smoothed = false;
 
   player.body.bounce.y = 0.5;
   player.body.gravity.y = 250;
@@ -30,6 +33,8 @@ function create() {
   spacebar = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
   D = game.input.keyboard.addKey(Phaser.KeyCode.D);
   A = game.input.keyboard.addKey(Phaser.KeyCode.A);
+
+  jump = 0;
 
 }
 
@@ -48,5 +53,17 @@ function update() {
 
     player.body.velocity.x = -150;
     player.animations.play('left');
+  }
+
+console.log(jump);
+
+
+  if (jump < 2)
+  {
+    if (spacebar.isDown && player.body.velocity.y > -150 )
+    {
+      jump = jump + 1;
+      player.body.velocity.y = -175;
+    }
   }
 }
