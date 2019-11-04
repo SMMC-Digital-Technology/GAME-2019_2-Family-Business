@@ -8,8 +8,8 @@ var spacebar
 function preload() {
 
   game.load.image('bg', 'assets/Background.png');
-  game.load.spritesheet('player', 'assets/jossepi1.png', 750, 50);
-  game.load.spritesheet('Alien', 'assets/Alien.png', 750, 450);
+  game.load.spritesheet('player', 'assets/jossepi.png', 22, 36);
+  game.load.spritesheet('alien', 'assets/Alien.png', 750, 450);
 }
 
 function create() {
@@ -24,8 +24,8 @@ function create() {
   player.body.gravity.y = 250;
   player.body.collideWorldBounds = true;
 
-  player.animations.add('left', [1, 2, 3, 4], 10, true);
-  player.animations.add('right', [5, 6, 7, 8], 10, true);
+  player.animations.add('right', [0, 1, 2, 3], 10, true);
+  player.animations.add('left', [4, 5, 6, 7], 10, true);
 
   spacebar = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
   D = game.input.keyboard.addKey(Phaser.KeyCode.D);
