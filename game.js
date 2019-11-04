@@ -8,7 +8,7 @@ var spacebar
 function preload() {
 
   game.load.image('bg', 'assets/Background.png');
-  game.load.spritesheet('Jossepi', 'assets/jossepi1.png', 750, 50);
+  game.load.spritesheet('player', 'assets/jossepi1.png', 750, 50);
   game.load.spritesheet('Alien', 'assets/Alien.png', 750, 450);
 }
 
