@@ -1,18 +1,16 @@
-var game = new Phaser.Game(400, 200, Phaser.CANVAS, 'Family Business', { preload: preload, create: create, update: update, render: render });
+var game = new Phaser.Game(400, 200, Phaser.CANVAS, 'Family Business', { preload: preload, create: create, update: update });
 
 var player
 var D
 var A
-var spacebar
-var jump
-var ground
+var W
+var S
 
 function preload() {
 
   game.load.image('bg', 'assets/Background.png');
-  game.load.image('ground', 'assets/ground.png');
   game.load.spritesheet('player', 'assets/jossepi.png', 22, 36);
-  game.load.spritesheet('alien', 'assets/Alien.png', 750, 450);
+  game.load.spritesheet('alien', 'assets/Alien.png');
 }
 
 function create() {
@@ -20,33 +18,23 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
   cursors = game.input.keyboard.createCursorKeys();
 
-  ground = game.add.sprite(0, 195, 'ground');
-  game.physics.arcade.enable(ground);
-  ground.body.immovable = true;
-
-  player = game.add.sprite(48, game.world.height - 150, 'player');
+  player = game.add.sprite(180, game.world.height - 75, 'player');
   game.physics.arcade.enable(player);
   player.smoothed = false;
 
-  //player.body.bounce.y = 0.5;
-  player.body.gravity.y = 250;
   player.body.collideWorldBounds = true;
-  player.onGround = false;
-  player.lastJump = 0;
-  player.canJump = true;
 
   player.animations.add('right', [0, 1, 2, 3], 10, true);
   player.animations.add('left', [4, 5, 6, 7], 10, true);
 
-  spacebar = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
-  D = game.input.keyboard.addKey(Phaser.KeyCode.D);
+  W = game.input.keyboard.addKey(Phaser.KeyCode.W);
   A = game.input.keyboard.addKey(Phaser.KeyCode.A);
+  S = game.input.keyboard.addKey(Phaser.KeyCode.S);
+  D = game.input.keyboard.addKey(Phaser.KeyCode.D);
 
 }
 
 function update() {
-
-  game.physics.arcade.collide(player, ground, checkGroundCollision);
 
   player.body.velocity.x = 0;
 
@@ -61,29 +49,18 @@ function update() {
 
     player.body.velocity.x = -150;
     player.animations.play('left');
+
   }
 
-console.log(jump);
+  else if (W.isDown){
 
-  if (spacebar.isDown && player.onGround)
-    {
-      player.onGround = false;
-      player.lastJump = game.time.totalElapsedSeconds;
-      player.body.velocity.y = -175;
-      player.canJump = false;
-  } else if (spacebar.isDown && player.canJump) {
-      player.body.velocity.y += -175;
-      player.canJump = false;
+    player.body.velocity.y = -150;
+
   }
-}
 
-function checkGroundCollision(player, ground) {
-  player.onGround = player.body.touching.down;
-  player.canJump = true;
-}
+  else if (S.isDown){
 
+    player.body.velocity.y = 150;
 
-function render () {
-  game.debug.body(player);
-  game.debug.body(ground);
+  }
 }
