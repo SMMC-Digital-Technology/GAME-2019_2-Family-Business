@@ -39,8 +39,8 @@ function create() {
 
   player.body.collideWorldBounds = true;
 
-  player.animations.add('right', [0, 1, 2, 3], 4, true);
-  player.animations.add('left', [4, 5, 6, 7], 4, true);
+  player.animations.add('right', [0, 1, 2, 3], 5, true);
+  player.animations.add('left', [4, 5, 6, 7], 5, true);
 
   W = game.input.keyboard.addKey(Phaser.KeyCode.W);
   A = game.input.keyboard.addKey(Phaser.KeyCode.A);
