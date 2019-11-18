@@ -29,7 +29,7 @@ function create() {
       fill: '#fff'
     });
 
-  text2 = game.add.text(player.x + 15, player.y + 45, '(if that wasnt already obvious for you)', {
+  text2 = game.add.text(player.x + 15, player.y + 45, 'And this is your Restaurant', {
         fontSize: '12px',
         fill: '#fff'
     });
@@ -58,7 +58,7 @@ function update() {
 
   if (D.isDown){
 
-    player.body.velocity.x = 150;
+    player.body.velocity.x = 125;
     player.animations.play('right');
     killText = true;
 
@@ -66,7 +66,7 @@ function update() {
 
   else if (A.isDown){
 
-    player.body.velocity.x = -150;
+    player.body.velocity.x = -125;
     player.animations.play('left');
     killText = true;
 
@@ -74,14 +74,14 @@ function update() {
 
   if (W.isDown){
 
-    player.body.velocity.y = -150;
+    player.body.velocity.y = -125;
     killText = true;
 
   }
 
   else if (S.isDown){
 
-    player.body.velocity.y = 150;
+    player.body.velocity.y = 125;
     killText = true;
 
   }
