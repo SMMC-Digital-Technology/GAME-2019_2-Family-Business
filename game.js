@@ -10,7 +10,7 @@ var text2;
 
 function preload() {
 
-  game.load.image('bg', 'assets/Background.png');
+  game.load.image('background', 'assets/Tester background.png');
   game.load.spritesheet('player', 'assets/jossepi.png', 22, 36);
   game.load.spritesheet('alien', 'assets/Alien.png');
 }
@@ -46,6 +46,8 @@ function create() {
   A = game.input.keyboard.addKey(Phaser.KeyCode.A);
   S = game.input.keyboard.addKey(Phaser.KeyCode.S);
   D = game.input.keyboard.addKey(Phaser.KeyCode.D);
+
+  game.add.image('background', 0, 0);
 
 }
 
